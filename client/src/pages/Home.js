@@ -4,13 +4,15 @@ import "./index.css";
 
 function Home(){
     return (
-        <Container id="homeContainer">
-            <Row>
-                <Col>
-               
-                </Col>
-            </Row>
-        </Container>
+        <div id="homeContainer">
+            <Container>
+                <Row>
+                    <Col>
+                
+                    </Col>
+                </Row>
+            <Container>
+        </div>
     );
 };
 

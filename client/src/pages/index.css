@@ -1,4 +1,6 @@
 #homeContainer {
     background-image: url("../images/background.jpg");
     background-size: cover;
+    height: 100vw;
+    width: 100vw;
 }

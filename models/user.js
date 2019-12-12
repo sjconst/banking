@@ -26,10 +26,13 @@ module.exports = (sequelize, DataTypes) => {
                 len: [6]
             }
         },
-        dateCreated: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW,
+        Checking_Balance: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
+        },
+        Saving_Balance: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
         }
     });
     return UserDetails;

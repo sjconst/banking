@@ -1,0 +1,10 @@
+#myButton {
+    margin-top: 10px;
+}
+#signInContainer {
+    margin-top: 50px;
+    width: 70%;
+    background-color: rgba(251,232,166,0.3);
+    padding: 20px;
+    box-shadow: 5px 5px 5px grey;
+}

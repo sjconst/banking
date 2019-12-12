@@ -5,6 +5,7 @@ import Footer from "./components/footer";
 import NavTab from "./components/navtab";
 import Home from "./pages/Home";
 import NoMatch from "./pages/NoMatch";
+import Account from "./pages/Account";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
       <div>
         <NavTab />
         <Switch>
-          <Route exact path="/" component={Home} />          
+          <Route exact path="/" component={Home} />   
+          <Route exact path="/Account" component={Account} />       
           <Route component={NoMatch} />
         </Switch>    
         <Footer />    

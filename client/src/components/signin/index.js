@@ -3,7 +3,7 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
-import { SIGN_IN } from "../../actions";
+import { SIGN_IN, SHOW } from "../../actions";
 
 function Signin(){
     const login = useSelector(state => state.login);
@@ -11,6 +11,9 @@ function Signin(){
     const signIn = () => {
         dispatch(SIGN_IN())
     };    
+    const show = () => {
+        dispatch(SHOW())
+    };
     return (
         <div id="signInContainer">           
             <Form>
@@ -32,12 +35,12 @@ function Signin(){
                     </Col>
                 </Row>      
             </Form>          
-            <Row>
-                <Col>
-                    <span>Forgot <Link to="/">Username</Link> or <Link to="/">Password</Link>?</span>
+            <Row id="forgot">
+                <Col >
+                    Forgot <Button variant="outline-secondary">Username</Button> or <Button variant="outline-secondary"> Password</Button>?
                 </Col>
-                <Col>
-                    <span><Link to="/">Sign up for online banking</Link></span>
+                <Col className="text-right">
+                    <Button variant="secondary" onClick={show}>Sign up for online banking</Button>
                 </Col>
             </Row>
         </div>

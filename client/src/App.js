@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Footer from "./components/footer";
 import NavTab from "./components/navtab";
@@ -15,7 +14,7 @@ function App() {
         <NavTab />
         <Switch>
           <Route exact path="/" component={Home} />   
-          <Route exact path="/Account" component={Account} />       
+          <Route exact path="/Accounts" component={Account} />       
           <Route component={NoMatch} />
         </Switch>    
         <Footer />    

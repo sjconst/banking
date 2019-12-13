@@ -2,8 +2,15 @@ import React from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./index.css";
+import { useSelector, useDispatch } from "react-redux";
+import { SIGN_IN } from "../../actions";
 
 function Signin(){
+    const login = useSelector(state => state.login);
+    const dispatch = useDispatch();
+    const signIn = () => {
+        dispatch(SIGN_IN())
+    };    
     return (
         <div id="signInContainer">           
             <Form>
@@ -21,7 +28,7 @@ function Signin(){
                         </Form.Group>
                     </Col>
                     <Col  className="align-self-center">
-                        <Link to="/Account"><Button variant="primary" type="submit" id="myButton">Sign in</Button></Link>
+                        <Link to="/Accounts"><Button variant="primary" type="submit" id="myButton" onClick={signIn}>Sign in</Button></Link>
                     </Col>
                 </Row>      
             </Form>          

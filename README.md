@@ -27,6 +27,13 @@ Next, you will need to download the required NPM packages, on both the client an
 
 This app uses MySQL and Sequelize. You will need to set up your remote database by uploading the information in the `schema.sql` file located in the models folder. 
 
+If you wish, you can download the redux dev tool extension [here](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en) . This line of code in index.js in client allows you to view states as the change from the developer console. 
+
+``` 
+const store = createStore(allReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+```
+
 ## Key Features
 
 * Clean, ES6 JavaScript code

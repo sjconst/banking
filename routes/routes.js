@@ -14,6 +14,17 @@ app.get("/api/user/:id", (req, res) => {
     })
     .then(data => res.json(data))
     .catch(err => res.json(err))
+});
+app.post("/api/saveUser", (req, res) => {
+    let {firstName, lastName, email, password } = req.body;
+    UserDetails.create({
+        First_Name: firstName,
+        Last_Name: lastName,
+        Email: email,
+        Password: password
+    })
+    .then(data => res.json(data))
+    .catch(err => res.status(422).json(err))
 })
 app.get("/*", (req, res) => {
     console.log("routes being hit");

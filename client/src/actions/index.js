@@ -10,3 +10,6 @@ export const SHOW = () => {
 export const CLOSE = () => {
     return { type: "CLOSE"}
 };
+export const CHANGE = input => {
+    return {type: "CHANGE", payload: input}
+};

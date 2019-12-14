@@ -45,7 +45,7 @@ const store = createStore(allReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && wi
 ## Author
 
 * Author: Stephanie Lake - https://github.com/sjconst
-* See deployed on [Heroku](https://desolate-forest-28822.herokuapp.com/)
+* See deployed on [Heroku](https://morning-reaches-86783.herokuapp.com/)
 
 ## License
 

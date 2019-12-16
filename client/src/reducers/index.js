@@ -6,7 +6,7 @@ import { combineReducers } from "redux";
 const allReducers = combineReducers({
     login: loggedReducer,
     show: showReducer,
-    change: changeReducer
+    change: changeReducer,
 });
 
 export default allReducers;

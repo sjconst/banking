@@ -1,18 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.css";
 import { Modal, Button, Form } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { CLOSE, CHANGE } from "../../actions";
+import validate from "./validation";
+import API from "../../utils/API";
 
 function Signup(){
+    const [ errors, setErrors ] = useState({});
+    const [ isSubmitting, setIsSubmitting ] = useState(false);
     const showState = useSelector(state => state.show);
-    const inputState = useSelector(state => state.change);
+    const inputState = useSelector(state => state.change);  
     const dispatch = useDispatch();
     const close = () => {
         dispatch(CLOSE())
     };    
-    const handleSubmit = () => {
-        console.log("submitted");
+    const handleSubmit = e => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        let inputValidate = validate(inputState); 
+        if(Object.keys(inputValidate).length === 0 && isSubmitting){
+            API.saveUser(inputState)
+            .then(res => {
+                if(res.data.email === "email already exists"){
+                    setErrors({...errors, email: "email already exists" })
+                } else {
+                    dispatch(CHANGE({}));
+                    close();
+                }
+            })
+            .catch(err => console.log(err))         
+        } else {
+            setErrors(validate(inputState));            
+        }
     };
     const handleChange = e => {
         e.persist();
@@ -28,25 +48,30 @@ function Signup(){
                             <Form.Group>
                                 <Form.Label>First Name</Form.Label>
                                 <Form.Control onChange={handleChange} name="firstName" type="text" placeholder="First name"/>
+                                {errors.firstName && (<p className="text-danger">{errors.firstName}</p>)} 
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Last Name</Form.Label>
                                 <Form.Control onChange={handleChange} name="lastName" type="text" placeholder="Last name"/>
+                                {errors.lastName && (<p className="text-danger">{errors.lastName}</p>)} 
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control onChange={handleChange} name="email" type="email" placeholder="First name"/>
+                                {errors.email && (<p className="text-danger">{errors.email}</p>)} 
                                 <Form.Text className="text-muted">
                                     We'll never share your email with anyone else.
                                 </Form.Text>
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control onChange={handleChange} name="password" type="text" placeholder="Password"/>
+                                <Form.Control onChange={handleChange} name="password" type="password" placeholder="Password"/>
+                                {errors.password && (<p className="text-danger">{errors.password}</p>)} 
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Confirm Password</Form.Label>
-                                <Form.Control onChange={handleChange} name="confirmPassword" type="text" placeholder="Confirm Password"/>
+                                <Form.Control onChange={handleChange} name="confirmPassword" type="password" placeholder="Confirm Password"/>
+                                {errors.passwordConfirm && (<p className="text-danger">{errors.passwordConfirm}</p>)} 
                             </Form.Group>
                             <Button type="submit" onClick={handleSubmit}>Submit</Button>
                         </Form>

@@ -37,10 +37,10 @@ function Signin(){
             </Form>          
             <Row id="forgot">
                 <Col >
-                    Forgot <Button variant="outline-secondary">Username</Button> or <Button variant="outline-secondary"> Password</Button>?
+                    Forgot <Button className="noOutline">Username</Button> or <Button className="noOutline"> Password</Button>?
                 </Col>
                 <Col className="text-right">
-                    <Button variant="secondary" onClick={show}>Sign up for online banking</Button>
+                    <Button className="noOutline" onClick={show}>Sign up for online banking</Button>
                 </Col>
             </Row>
         </div>

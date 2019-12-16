@@ -13,3 +13,6 @@ export const CLOSE = () => {
 export const CHANGE = input => {
     return {type: "CHANGE", payload: input}
 };
+export const ERROR = input => {
+    return {type: "ERROR", payload: input}
+};

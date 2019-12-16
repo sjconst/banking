@@ -11,3 +11,10 @@
 #forgot {
     margin-top: 25px;
 }
+.noOutline {
+    border: none!important;
+    background-color: transparent!important;
+    color: #007bff!important;
+    padding: 0 0 3px 0!important;
+    text-decoration: underline;
+  }

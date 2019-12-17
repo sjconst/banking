@@ -1,25 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import "./index.css";
-import { useSelector, useDispatch } from "react-redux";
-import { SIGN_IN, SHOW } from "../../actions";
+import { useDispatch, useSelector } from "react-redux";
+import { SIGN_IN, SHOW, USER } from "../../actions";
 import API from "../../utils/API";
 
-function Signin(){
-    const login = useSelector(state => state.login);
+function Signin(){    
     const dispatch = useDispatch();
+    const userState = useSelector(state => state.user);
+    const [ error, setError ] = useState({});
     const signIn = e => {
         e.preventDefault();
-        API.checkUser(e.target.username, e.target.email)
-        .then(res => {
-            
-        })
-        .catch(err => console.log(err))
-        dispatch(SIGN_IN())
+        if(!userState.username || !userState.password){
+            setError({...error, login: "invalid login" })
+        } else {
+            API.checkUser(userState.username, userState.password)
+            .then(res => {       
+                if(res.data.Username === userState.username){              
+                    dispatch(SIGN_IN());
+                } else {
+                    setError({...error, login: "invalid login" })
+                }
+            })
+            .catch(err => console.log(err))
+        }    
     };    
     const show = () => {
         dispatch(SHOW())
     };
+    const handleChange = e => {
+        e.persist();
+        dispatch(USER(e.target))
+    }
     return (
         <div id="signInContainer">           
             <Form>
@@ -27,16 +39,17 @@ function Signin(){
                     <Col>
                         <Form.Group>
                         <Form.Label>Username</Form.Label>
-                        <Form.Control type="text" placeholder="Enter username" />
+                        <Form.Control onChange={handleChange} name="username" type="text" placeholder="Enter username" />
+                        {error.login && (<p className="text-danger">{error.login}</p>)}
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group>
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="text" />
+                        <Form.Control onChange={handleChange} name="password" type="password" />
                         </Form.Group>
                     </Col>
-                    <Col  className="align-self-center">
+                    <Col className="align-self-center">
                         <Button variant="primary" type="submit" id="myButton" onClick={signIn}>Sign in</Button>
                     </Col>
                 </Row>      

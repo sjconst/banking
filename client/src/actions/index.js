@@ -16,3 +16,6 @@ export const CHANGE = input => {
 export const ERROR = input => {
     return {type: "ERROR", payload: input}
 };
+export const USER = input => {
+    return {type: "USER", payload: input}
+};

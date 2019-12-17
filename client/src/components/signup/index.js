@@ -23,10 +23,11 @@ function Signup(){
             API.saveUser(inputState)
             .then(res => {
                 if(res.data.email === "email already exists"){
-                    setErrors({...errors, email: "email already exists" })
+                    setErrors({...errors, email: "email exists" })
                 } else {
                     dispatch(CHANGE({}));
                     close();
+                    alert("User saved successfully. You may now log in.");
                 }
             })
             .catch(err => console.log(err))         

@@ -14,25 +14,26 @@ app.get("/api/user/id/:id", (req, res) => {
     .then(data => res.json(data))
     .catch(err => res.json(err))
 });
-app.get("/api/user/check/:email/:username", (req, res) => {
-    let email = req.params.email;
+app.get("/api/user/check/:username/:password", (req, res) => {
+    let password = req.params.password;
     let username = req.params.username;
-    UserDetails.findAll({
+    UserDetails.findOne({
         where: {
-            Email: email,
+            Password: password,
             Username: username
         }
     })
-    .then(data => {
-        console.log(data)
+    .then(data => {      
         if(data){
-            return res.json({ email: "email already exists"})
+            return res.json(data)
+        } else {
+            return res.json("Invalid login")
         }
     })
     .catch(err => res.json(err))
 })
 app.post("/api/saveUser", (req, res) => {
-    let {firstName, lastName, email, password } = req.body;
+    let {firstName, lastName, email, password, username } = req.body;
     console.log(email);
     UserDetails.findAll({
         where: {
@@ -41,13 +42,14 @@ app.post("/api/saveUser", (req, res) => {
     })
     .then(data => {
         if(data.length){
-            return res.json({ email: "email already exists"})
+            return res.json({ email: "email exists"})
         } else {
             UserDetails.create({
                 First_Name: firstName,
                 Last_Name: lastName,
                 Email: email,
-                Password: password
+                Password: password,
+                Username: username
             })
             .then(data => res.json(data))
             .catch(err => res.status(422).json(err))

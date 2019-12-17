@@ -7,7 +7,7 @@ export default {
     saveUser: data => {
         return axios.post("api/saveUser", data)
     },
-    checkUser: email => {
-        return axios.get(`/api/user/email/${email}`)
+    checkUser: (email, username) => {
+        return axios.get(`/api/user/check/${email}/${username}`)
     }
 }

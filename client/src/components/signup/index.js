@@ -64,6 +64,11 @@ function Signup(){
                                 </Form.Text>
                             </Form.Group>
                             <Form.Group>
+                                <Form.Label>Username</Form.Label>
+                                <Form.Control onChange={handleChange} name="username" type="text" placeholder="Username"/>
+                                {errors.username && (<p className="text-danger">{errors.username}</p>)} 
+                            </Form.Group>
+                            <Form.Group>
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control onChange={handleChange} name="password" type="password" placeholder="Password"/>
                                 {errors.password && (<p className="text-danger">{errors.password}</p>)} 

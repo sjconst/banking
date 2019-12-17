@@ -8,7 +8,9 @@ export default function validate(inputs) {
         errors.email = 'An email address is required';
     } else if (!/\S+@\S+\.\S+/.test(inputs.email)) {
         errors.email = 'Email address is invalid';
-    } else if (!/^.{6,}$/.test(inputs.password)){
+    } else if(!inputs.username){
+        errors.username = "A username is required";
+    }else if (!/^.{6,}$/.test(inputs.password)){
         errors.password = "Password must be at least 6 characters long";
     } else if(inputs.password !== inputs.confirmPassword){
         errors.passwordConfirm = "Your passwords do not match";

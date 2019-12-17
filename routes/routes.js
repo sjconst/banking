@@ -14,11 +14,13 @@ app.get("/api/user/id/:id", (req, res) => {
     .then(data => res.json(data))
     .catch(err => res.json(err))
 });
-app.get("/api/user/email/:email", (req, res) => {
+app.get("/api/user/check/:email/:username", (req, res) => {
     let email = req.params.email;
+    let username = req.params.username;
     UserDetails.findAll({
         where: {
-            Email: email
+            Email: email,
+            Username: username
         }
     })
     .then(data => {
@@ -38,8 +40,6 @@ app.post("/api/saveUser", (req, res) => {
         }
     })
     .then(data => {
-        console.log("HELLLLO")
-        console.log(data);
         if(data.length){
             return res.json({ email: "email already exists"})
         } else {

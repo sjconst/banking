@@ -1,14 +1,20 @@
 import React from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
 import { SIGN_IN, SHOW } from "../../actions";
+import API from "../../utils/API";
 
 function Signin(){
     const login = useSelector(state => state.login);
     const dispatch = useDispatch();
-    const signIn = () => {
+    const signIn = e => {
+        e.preventDefault();
+        API.checkUser(e.target.username, e.target.email)
+        .then(res => {
+            
+        })
+        .catch(err => console.log(err))
         dispatch(SIGN_IN())
     };    
     const show = () => {
@@ -31,7 +37,7 @@ function Signin(){
                         </Form.Group>
                     </Col>
                     <Col  className="align-self-center">
-                        <Link to="/Accounts"><Button variant="primary" type="submit" id="myButton" onClick={signIn}>Sign in</Button></Link>
+                        <Button variant="primary" type="submit" id="myButton" onClick={signIn}>Sign in</Button>
                     </Col>
                 </Row>      
             </Form>          

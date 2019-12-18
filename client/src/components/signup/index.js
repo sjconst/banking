@@ -8,18 +8,15 @@ import API from "../../utils/API";
 
 function Signup(){
     const [ errors, setErrors ] = useState({});
-    const [ isSubmitting, setIsSubmitting ] = useState(false);
     const showState = useSelector(state => state.show);
     const inputState = useSelector(state => state.change);  
     const dispatch = useDispatch();
     const close = () => {
         dispatch(CLOSE())
     };    
-    const handleSubmit = e => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        let inputValidate = validate(inputState); 
-        if(Object.keys(inputValidate).length === 0 && isSubmitting){
+    const handleSubmit = e => {   
+        let inputValidate = validate(inputState);    
+        if(Object.keys(inputValidate).length === 0){         
             API.saveUser(inputState)
             .then(res => {
                 if(res.data.email === "email already exists"){
@@ -28,12 +25,14 @@ function Signup(){
                     dispatch(CHANGE({}));
                     close();
                     alert("User saved successfully. You may now log in.");
+                    setErrors({});
                 }
             })
             .catch(err => console.log(err))         
         } else {
             setErrors(validate(inputState));            
         }
+        e.preventDefault();
     };
     const handleChange = e => {
         e.persist();
@@ -79,7 +78,7 @@ function Signup(){
                                 <Form.Control onChange={handleChange} name="confirmPassword" type="password" placeholder="Confirm Password"/>
                                 {errors.passwordConfirm && (<p className="text-danger">{errors.passwordConfirm}</p>)} 
                             </Form.Group>
-                            <Button type="submit" onMouseDown={handleSubmit}>Submit</Button>
+                            <Button type="submit" onClick={handleSubmit}>Submit</Button>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>

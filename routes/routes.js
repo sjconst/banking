@@ -36,7 +36,6 @@ app.get("/api/user/check/:username/:password", (req, res) => {
 })
 app.post("/api/saveUser", (req, res) => {
     let { firstName, lastName, email, password, username } = req.body;
-    console.log(username);
     UserDetails.findAll({
         where: {
             Email: email

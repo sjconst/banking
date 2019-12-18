@@ -79,7 +79,7 @@ function Signup(){
                                 <Form.Control onChange={handleChange} name="confirmPassword" type="password" placeholder="Confirm Password"/>
                                 {errors.passwordConfirm && (<p className="text-danger">{errors.passwordConfirm}</p>)} 
                             </Form.Group>
-                            <Button type="submit" onClick={handleSubmit}>Submit</Button>
+                            <Button type="submit" onMouseDown={handleSubmit}>Submit</Button>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>

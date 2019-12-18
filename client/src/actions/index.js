@@ -19,3 +19,12 @@ export const ERROR = input => {
 export const USER = input => {
     return {type: "USER", payload: input}
 };
+export const USERDATA = data => {
+    return {type: "USERDATA", payload: data}
+};
+export const DELETEDATA = () => {
+    return {type: "DELETEDATA"}
+};
+export const DELETEUSER = () => {
+    return {type: "DELETEUSER"}
+};

@@ -58,8 +58,16 @@ app.post("/api/saveUser", (req, res) => {
     })
     .catch(err => res.json(err))
 });
-app.get("/*", (req, res) => {
-    console.log("routes being hit");
+app.put("/api/deposit/:type/:username", (req, res) => {
+    let type = req.params.type;  
+    UserDetails.update(
+        { [type]: req.body.amount },
+        { where: { Username: req.params.username}}
+    )
+    .then(res => res.json(data))
+    .catch(err => res.json(err))
+})
+app.get("/*", (req, res) => {   
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 module.exports = app;

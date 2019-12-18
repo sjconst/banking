@@ -2,19 +2,15 @@ import React, { useState } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
-import { SIGN_IN, SHOW, USER } from "../../actions";
+import { SIGN_IN, SHOW, USER, USERDATA } from "../../actions";
 import API from "../../utils/API";
 import { useHistory } from 'react-router-dom';
 
 function Signin(){    
     const dispatch = useDispatch();
     const userState = useSelector(state => state.user);
-    const [ error, setError ] = useState({});
-    const routeChange = () => {
-        let path = "/Account";
-
-    }
-    let history = useHistory();
+    const [ error, setError ] = useState({});   
+    const history = useHistory();
     const signIn = e => {
         e.preventDefault();
         if(!userState.username || !userState.password){
@@ -22,8 +18,9 @@ function Signin(){
         } else {
             API.checkUser(userState.username, userState.password)
             .then(res => {       
-                if(res.data.Username === userState.username){              
-                    dispatch(SIGN_IN());
+                if(res.data.Username === userState.username){                    
+                    dispatch(USERDATA(res.data));            
+                    dispatch(SIGN_IN());                    
                     history.push("/Account");
                 } else {
                     setError({...error, login: "invalid login" })
@@ -33,12 +30,12 @@ function Signin(){
         }    
     };    
     const show = () => {
-        dispatch(SHOW())
+        dispatch(SHOW());
     };
     const handleChange = e => {
         e.persist();
-        dispatch(USER(e.target))
-    }
+        dispatch(USER(e.target));
+    };
     return (
         <div id="signInContainer">           
             <Form>

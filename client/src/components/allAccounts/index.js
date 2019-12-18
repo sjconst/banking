@@ -1,25 +1,30 @@
-import React, {useState, useEffect} from "react";
+import React, { useEffect } from "react";
 import "./index.css";
-import API from "../../utils/API";
+import { useSelector } from "react-redux";
+import { Container, Row, Col } from "react-bootstrap";
+import { USERDATA } from "../../actions";
 
 function AllAccounts(){
-    const [ accounts, setAccount ] = useState([]);
-   /*  useEffect(() => {
-        let id = "0";
-        API.getUser(id)
-        .then(res => {
-            console.log(res)
-            setAccount(res)
-        })
-    }, []) */
+    const userDataState = useSelector(state => state.userData);    
     return (
-        <div>
-            <ul>
-                <li>
-                    {accounts}
-                </li>
-            </ul>
-        </div>
+        <Container>         
+            <Row className="border">
+                <Col>
+                    <h4>Checking Balance</h4>
+                </Col>
+                <Col>
+                    <h4>{userDataState.Checking_Balance}</h4>
+                </Col>
+            </Row>
+            <Row className="border"> 
+                <Col>
+                    <h4>Savings Balance</h4>
+                </Col>
+                <Col>
+                    <h4>{userDataState.Saving_Balance}</h4>
+                </Col>
+            </Row>
+        </Container>
     )
 };
 

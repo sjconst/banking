@@ -7,7 +7,7 @@ import Deposit from "../components/deposits";
 function Account(){
     return (
         <Container id="tabsContainer">
-            <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+            <Tabs defaultActiveKey="accounts">
                 <Tab eventKey="accounts" title="accounts">
                     <AllAccounts />
                 </Tab>

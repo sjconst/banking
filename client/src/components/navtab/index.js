@@ -4,13 +4,15 @@ import { Link} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import "./index.css";
-import { useSelector, useDispatch } from "react-redux";
-import { SIGN_OUT } from "../../actions";
+import { useDispatch } from "react-redux";
+import { SIGN_OUT, DELETEDATA, DELETEUSER } from "../../actions";
 
 function NavTab() {
     const dispatch = useDispatch();
     const signOut = () => {
-        dispatch(SIGN_OUT())
+        dispatch(SIGN_OUT());
+        dispatch(DELETEDATA());
+        dispatch(DELETEUSER());
     }
     return (
         <Navbar collapseOnSelect expand="sm" id="myNavbar">

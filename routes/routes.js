@@ -1,6 +1,8 @@
 const express = require("express");
 const path = require("path");
 const { UserDetails } = require("../models");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 // Initialize Express
 const app = express();
 //Routes
@@ -34,7 +36,6 @@ app.get("/api/user/check/:username/:password", (req, res) => {
 })
 app.post("/api/saveUser", (req, res) => {
     let {firstName, lastName, email, password, username } = req.body;
-    console.log(email);
     UserDetails.findAll({
         where: {
             Email: email

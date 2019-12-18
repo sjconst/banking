@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Link, Redirect, useHistory, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Footer from "./components/footer";
 import NavTab from "./components/navtab";
 import Home from "./pages/Home";
@@ -10,35 +10,21 @@ import { useSelector } from "react-redux";
 
 function App() {
   const loggedIn = useSelector(state => state.login);  
-  function PrivateRoute({ children, ...rest}){
-    return (
-      <Route 
-      {...rest}
-      render={({ location }) =>
-      loggedIn ? (
-        children
-      ) : (
-        <Redirect to={{
-          pathname: "/",
-          state: { from: location }
-        }}
-        />
-      )
+  const Wrapper = () => {
+    if(!loggedIn){
+      return <Redirect to="/" />
     }
-    />
-    );
-  };
-  return (
+    return (
+      <Route path="/Account" component={Account} />
+    )
+  }
+   return (
     <Router>
       <div>
         <NavTab />
         <Switch>
-          <Route path="/">
-            <Home />
-          </Route>
-          <PrivateRoute path="/Account">
-            <Account />
-          </PrivateRoute>
+        <Route exact path="/Account" component={Wrapper}/>  
+          <Route path="/" component={Home}/>               
           <Route component={NoMatch} />
         </Switch>    
         <Footer />    

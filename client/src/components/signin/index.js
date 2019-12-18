@@ -4,11 +4,17 @@ import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
 import { SIGN_IN, SHOW, USER } from "../../actions";
 import API from "../../utils/API";
+import { useHistory } from 'react-router-dom';
 
 function Signin(){    
     const dispatch = useDispatch();
     const userState = useSelector(state => state.user);
     const [ error, setError ] = useState({});
+    const routeChange = () => {
+        let path = "/Account";
+
+    }
+    let history = useHistory();
     const signIn = e => {
         e.preventDefault();
         if(!userState.username || !userState.password){
@@ -18,6 +24,7 @@ function Signin(){
             .then(res => {       
                 if(res.data.Username === userState.username){              
                     dispatch(SIGN_IN());
+                    history.push("/Account");
                 } else {
                     setError({...error, login: "invalid login" })
                 }

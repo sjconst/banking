@@ -11,7 +11,7 @@ This full stack ReactJS login/authorization app uses Redux for state management,
 - Bootstrap and React-Bootstrap
 - Sequelize (mySQL)
 - Node.js and Express
-- Passport + jsonwebtoken for authentication and validator for input validation (to be implemented)
+- User authentication and validation
 
 ## Getting Started
 
@@ -41,6 +41,19 @@ const store = createStore(allReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && wi
 * ReactJS UI 
 * State management using Redux
 * User authentication
+* Restricted routes in ReactJS using react-router-dom
+
+* Creating a new user
+
+![bankingSave](https://user-images.githubusercontent.com/42453320/71116740-87c08a00-2189-11ea-9142-5ecc0603367a.gif)
+
+* Logging in and out
+
+![bankingSignin](https://user-images.githubusercontent.com/42453320/71116923-ef76d500-2189-11ea-890f-644cfed2dca1.gif)
+
+* Making a deposit
+
+![bankingDeposit](https://user-images.githubusercontent.com/42453320/71117070-48df0400-218a-11ea-9cfd-1a459703c11f.gif)
 
 ## Author
 

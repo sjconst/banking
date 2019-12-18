@@ -2,10 +2,9 @@ import React, { useEffect } from "react";
 import "./index.css";
 import { useSelector } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
-import { USERDATA } from "../../actions";
 
 function AllAccounts(){
-    const userDataState = useSelector(state => state.userData);    
+    const userDataState = useSelector(state => state.userData) 
     return (
         <Container>         
             <Row className="border">

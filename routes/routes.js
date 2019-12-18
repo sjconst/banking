@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 // Initialize Express
 const app = express();
 //Routes
-app.get("/api/user/id/:id", (req, res) => {  
+app.get("/api/user/user/:username", (req, res) => {  
     let id = req.params.id;
     UserDetails.findAll({
         where: {

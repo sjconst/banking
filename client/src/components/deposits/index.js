@@ -3,7 +3,7 @@ import "./index.css";
 import { Container, Form, Button } from "react-bootstrap";
 import API from "../../utils/API";
 import { useSelector, useDispatch } from "react-redux";
-import { USERDATA } from "../../actions";
+import { USERDATA, USER } from "../../actions";
 
 function Deposit(){
     const [input, setInput] = useState({});
@@ -16,9 +16,19 @@ function Deposit(){
     };
     const handleSubmit = e => {
         e.preventDefault();
-        API.deposit(input.type, userState.username, input.deposit)
+        let current;
+        if(input.type === "Checking_Balance"){
+            current = parseInt(userDataState.Checking_Balance) + parseInt(input.deposit);
+        } else if (input.type === "Saving_Balance"){
+            current = parseInt(userDataState.Saving_Balance) + parseInt(input.deposit);
+        }
+        API.deposit(input.type, userState.username, current)
         .then(res => {
             setInput({});
+            API.checkUser(userState.username, userState.password)
+            .then(res => {
+                dispatch(USERDATA(res.data))
+            })
         })
         .catch(err => console.log(err))
     }

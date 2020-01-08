@@ -15,7 +15,7 @@ This full stack ReactJS login/authorization app uses Redux for state management,
 
 ## Getting Started
 
-To download and test this app, you will need the Node Packet Manager installed.  For more information, visit: <https://www.npmjs.com/get-npm>
+To download and test this app, you will need the Node Package Manager installed.  For more information, visit: <https://www.npmjs.com/get-npm>
 
 You will also need Node.js installed.  For more information, visit <https://nodejs.org/en/download/>
 

@@ -3,7 +3,7 @@ import "./index.css";
 import { Container, Form, Button } from "react-bootstrap";
 import API from "../../utils/API";
 import { useSelector, useDispatch } from "react-redux";
-import { USERDATA, USER } from "../../actions";
+import { USERDATA } from "../../actions";
 
 function Deposit(){
     const [input, setInput] = useState({});

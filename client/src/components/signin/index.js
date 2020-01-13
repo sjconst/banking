@@ -16,7 +16,10 @@ function Signin(){
         if(!userState.username || !userState.password){
             setError({...error, login: "invalid login" })
         } else {
-            API.checkUser(userState.username, userState.password)
+            let password = {
+                password: userState.password
+            };
+            API.checkUser(userState.username, password)
             .then(res => {       
                 if(res.data.Username === userState.username){                    
                     dispatch(USERDATA(res.data));            

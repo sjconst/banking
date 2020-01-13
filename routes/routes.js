@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 // Initialize Express
 const app = express();
 //Routes
-app.get("/api/user/user/:username", (req, res) => {  
+app.get("/api/user/:username", (req, res) => {  
     let id = req.params.id;
     UserDetails.findAll({
         where: {
@@ -16,8 +16,10 @@ app.get("/api/user/user/:username", (req, res) => {
     .then(data => res.json(data))
     .catch(err => res.json(err))
 });
-app.get("/api/user/check/:username/:password", (req, res) => {
-    let password = req.params.password;
+app.post("/api/user/:username/check", (req, res) => {
+    let password = req.body.password;
+    console.log(req.body);
+    console.log(password)
     let username = req.params.username;
     UserDetails.findOne({
         where: {
@@ -34,7 +36,7 @@ app.get("/api/user/check/:username/:password", (req, res) => {
     })
     .catch(err => res.json(err))
 })
-app.post("/api/saveUser", (req, res) => {
+app.post("/api/user", (req, res) => {
     let { firstName, lastName, email, password, username } = req.body;
     UserDetails.findAll({
         where: {
@@ -58,7 +60,7 @@ app.post("/api/saveUser", (req, res) => {
     })
     .catch(err => res.json(err))
 });
-app.put("/api/deposit/:type/:username", (req, res) => {
+app.put("/api/deposit/:username/:type", (req, res) => {
     let type = req.params.type;  
     UserDetails.update(
         { [type]: req.body.amount },
